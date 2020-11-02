@@ -10,6 +10,7 @@ from datetime import date
 import yfinance as yf
 yf.pdr_override()
 import pandas as pd
+import datetime
 
 ls_vbk_constituents = ['IMMU', 'HZNP', 'PODD', 'ETSY', 'CTLT', 'ZBRA', 'TER', 'HUBS', 'POOL', 'FICO', 'MPWR', 'ZEN',
                        'TDY', 'MASI', 'CDAY', 'BIO', 'MDB', 'SRPT', 'GGG', 'ELS', 'PENN', 'NDSN', 'ENTG', 'CABO',
@@ -59,8 +60,8 @@ ls_vbk_constituents = ['IMMU', 'HZNP', 'PODD', 'ETSY', 'CTLT', 'ZBRA', 'TER', 'H
                        'VVNT', 'LORL', 'TCDA', 'VITL', 'ALVR', 'STEP', 'AMK', 'PUMP', 'GSAT', 'OII', 'BNFT', 'SUMO',
                        'KYMR', 'RUBY', 'SCWX', 'GTT', 'REV', 'GBL']
 
-dt_start = "2013-01-01"
-dt_end = "2020–11–02"
+dt_start = datetime.datetime(2013, 1, 1)
+dt_end = datetime.datetime(2020, 11, 2)
 today = date.today()
 
 files=[]
@@ -75,13 +76,13 @@ def getData(ticker):
     SaveData(data, dataname)
 
 def SaveData(df, filename):
-    df.to_csv("./ data /"+filename +".csv")
+    df.to_csv("C:\\Users\\q9237\\PycharmProjects\\vbk_pairs_trading\\data"+filename +".csv")
 
 for s_ticker in ls_vbk_constituents:
     getData(s_ticker)
 
 for i in range(0,len(ls_vbk_constituents)):
-    df1= pd.read_csv("./data/"+ str(files[i])+".csv")
+    df1= pd.read_csv("C:\\Users\\q9237\\PycharmProjects\\vbk_pairs_trading\\data"+ str(files[i])+".csv")
     print (df1.head())
 
 
