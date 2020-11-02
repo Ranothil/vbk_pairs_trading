@@ -8,6 +8,7 @@ Pulls historical price data from yahoo finance for list of vbk constituents
 from pandas_datareader import data as pdr
 from datetime import date
 import yfinance as yf
+
 yf.pdr_override()
 import pandas as pd
 import datetime
@@ -64,26 +65,24 @@ dt_start = datetime.datetime(2013, 1, 1)
 dt_end = datetime.datetime(2020, 11, 2)
 today = date.today()
 
-files=[]
-
+files = []
 
 
 def getData(ticker):
-    print (ticker)
+    print(ticker)
     data = pdr.get_data_yahoo(ticker, start=dt_start, end=dt_end)
-    dataname= ticker+"_"+str(today)
+    dataname = ticker + "_" + str(today)
     files.append(dataname)
     SaveData(data, dataname)
 
+
 def SaveData(df, filename):
-    df.to_csv("C:\\Users\\q9237\\PycharmProjects\\vbk_pairs_trading\\data"+filename +".csv")
+    df.to_csv("C:\\Users\\q9237\\PycharmProjects\\vbk_pairs_trading\\data" + filename + ".csv")
+
 
 for s_ticker in ls_vbk_constituents:
     getData(s_ticker)
 
-for i in range(0,len(ls_vbk_constituents)):
-    df1= pd.read_csv("C:\\Users\\q9237\\PycharmProjects\\vbk_pairs_trading\\data"+ str(files[i])+".csv")
-    print (df1.head())
-
-
-
+for i in range(0, len(ls_vbk_constituents)):
+    df1 = pd.read_csv("C:\\Users\\q9237\\PycharmProjects\\vbk_pairs_trading\\data" + str(files[i]) + ".csv")
+    print(df1.head())
