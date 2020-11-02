@@ -7,6 +7,13 @@ Pulls historical price data from yahoo finance for list of vbk constituents
 
 import numpy as np
 import pandas as pd
+import yfinance as yf
+from yahoofinancials import YahooFinancials
+from pandas_datareader import data as pdr
+from datetime import date
+import yfinance as yf
+yf.pdr_override()
+import pandas as pd
 
 ls_vbk_constituents = ['IMMU', 'HZNP', 'PODD', 'ETSY', 'CTLT', 'ZBRA', 'TER', 'HUBS', 'POOL', 'FICO', 'MPWR', 'ZEN',
                        'TDY', 'MASI', 'CDAY', 'BIO', 'MDB', 'SRPT', 'GGG', 'ELS', 'PENN', 'NDSN', 'ENTG', 'CABO',
@@ -55,5 +62,31 @@ ls_vbk_constituents = ['IMMU', 'HZNP', 'PODD', 'ETSY', 'CTLT', 'ZBRA', 'TER', 'H
                        'ZIOP', 'VERX', 'WOW', 'PTEN', 'PHAT', 'OM', 'GOGO', 'NKTX', 'CLVS', 'RIG', 'PGEN', 'TRUE',
                        'VVNT', 'LORL', 'TCDA', 'VITL', 'ALVR', 'STEP', 'AMK', 'PUMP', 'GSAT', 'OII', 'BNFT', 'SUMO',
                        'KYMR', 'RUBY', 'SCWX', 'GTT', 'REV', 'GBL']
+
+dt_start = "2013-01-01"
+dt_end = "2020–11–02"
+today = date.today()
+
+files=[]
+
+
+
+def getData(ticker):
+    print (ticker)
+    data = pdr.get_data_yahoo(ticker, start=dt_start, end=dt_end)
+    dataname= ticker+"_"+str(today)
+    files.append(dataname)
+    SaveData(data, dataname)
+
+def SaveData(df, filename):
+    df.to_csv("./ data /"+filename +".csv")
+
+for s_ticker in ls_vbk_constituents:
+    getData(s_ticker)
+
+for i in range(0,len(ls_vbk_constituents)):
+    df1= pd.read_csv("./data/"+ str(files[i])+".csv")
+    print (df1.head())
+
 
 
