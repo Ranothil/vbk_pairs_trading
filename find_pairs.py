@@ -1,5 +1,11 @@
-# find_pairs.py will locate suitable pair trading opportunities among VBK constituents
-# through correlation analysis
+'''
+Created on November 2nd, 2020
+find_pairs.py will locate suitable pair trading opportunities among VBK constituents
+through correlation analysis
+@Zachary Lee
+@Xiaoying Tang
+'''
+
 
 import pandas as pd
 import numpy as np
