@@ -5,10 +5,6 @@ Pulls historical price data from yahoo finance for list of vbk constituents
 @Xiaoying Tang
 '''
 
-import numpy as np
-import pandas as pd
-import yfinance as yf
-from yahoofinancials import YahooFinancials
 from pandas_datareader import data as pdr
 from datetime import date
 import yfinance as yf
